@@ -139,10 +139,25 @@ void inorder(tree *t)
 	printf("%d" ,t->data);
 	inorder(t->right);
 }
+void preorder(tree *t)
+{
+
+	printf("%d" ,t->data);
+	preeorder(t->left);
+	preorder(t->right);
+}
+void inorder(tree *t)
+{
+	postorder(t->left);
+	postorder(t->right);
+	printf("%d" ,t->data);
+}
 void main()
 {
 	insert(20);
 	insert(22);
 	inorder(root);
+	preorder(root);
+	postorder(root);
 	delete(20);
 }

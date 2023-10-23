@@ -14,18 +14,15 @@ struct CircularQueue {
     int front, rear;
 };
 
-// Function to initialize the circular queue.
 void initializeQueue(struct CircularQueue queue) {
     queue.front = -1;
     queue.rear = -1;
 }
 
-// Function to check if the queue is empty.
 int isEmpty(struct CircularQueue queue) {
     return (queue.front == -1);
 }
 
-// Function to check if the queue is full.
 int isFull(struct CircularQueue queue) {
     return ((queue.rear + 1) % MAX_SIZE == queue.front);
 }

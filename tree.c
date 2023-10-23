@@ -5,7 +5,7 @@ struct node
 	int data;
 	struct node *left;
 	struct node *right;
-};q	
+};
 typedef struct node tree;
 tree *root=NULL;
 void insert(int e)

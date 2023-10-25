@@ -1,6 +1,6 @@
 #include <stdio.h>
 int i, j, n3;
-int coefsum[10], expsum[10];
+int coefsum[10], expsum[10], coefmul[10], expmul[10];
 void display(int n, int coef[], int expo[])
 {
 
@@ -27,7 +27,7 @@ void display(int n, int coef[], int expo[])
 void add(int coef1[], int exp1[], int coef2[], int exp2[], int n1, int n2)
 {
 	
-	int i, j, k=0;
+	int k=0;
 	i=0; 
 	j=0;
 	while(i<n1 && j<n2)
@@ -41,7 +41,7 @@ void add(int coef1[], int exp1[], int coef2[], int exp2[], int n1, int n2)
 		else if(exp1[i]<exp2[j])
 		{
 			expsum[k]=exp2[j];
-			coefsum[k]=exp2[j];
+			coefsum[k]=coef2[j];
 			j++;k++;
 		}
 		else
@@ -54,7 +54,7 @@ void add(int coef1[], int exp1[], int coef2[], int exp2[], int n1, int n2)
 	if(i<n1)
 	{
 		expsum[k]=exp1[i];
-		coefsum[k]=exp1[i];
+		coefsum[k]=coef1[i];
 		i++; k++;
 	}
 	else if(j<n2)
@@ -86,6 +86,24 @@ void read(int coef1[],int  expo1[], int coef2[], int expo2[], int n1, int n2)
 	printf("\n2nd polynomials : ");
 	display(n2, coef2, expo2);
 }
+void mul(int coef1[], int exp1[], int coef2[], int exp2[], int n1, int n2)
+{
+	i=0;
+	j=0;
+	int k=0;
+	for(i=0; i<n1; i++)
+	{
+		for(j=0; j<n2; j++)
+		{
+			coefmul[k]=coef1[i]*coef2[j];
+			expmul[k]=exp1[i]+exp2[j];
+			k++;
+		}
+	}
+	n3=k;
+	printf("Multiplication");
+	display(n3, coefmul, expmul);
+}
 
 int main()
 {
@@ -96,5 +114,6 @@ int main()
 	scanf("%d", &n2);
 	read(coef1, expo1, coef2, expo2, n1, n2);
 	add(coef1, expo1, coef2, expo2, n1, n2);
+	mul(coef1, expo1, coef2, expo2, n1, n2);
 	return 0;
 }

@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 void heaptree(int a[], int n, int e)
 {
 	int i, t;
@@ -9,7 +10,7 @@ void heaptree(int a[], int n, int e)
 		if(a[i]<a[(i-1)/2])
 		{
 			break;
-		}	
+		}
 		else
 		{
 			t=a[i];
@@ -19,15 +20,16 @@ void heaptree(int a[], int n, int e)
 		i=(i-1)/2;
 	}
 }
-void disparr(int a[], int n)
+void disp(int a[], int n)
 {
-    int i;
-    for (i = 0; i <= n; i++)
-    {
-        printf("%d\t", a[i]);
-    }
+	int i;
+	for(i=0; i<=n; i++)
+	{
+		printf("%d\t", a[i]);
+	}
+	printf("\n");
 }
-void heapSort(int a[], int n)
+void heapsort(int a[], int n)
 {
 	int i, j, t, lc, rc;
 	j=n;
@@ -42,7 +44,7 @@ void heapSort(int a[], int n)
 		{
 			lc=(2*i)+1;
 			rc=(2*i)+2;
-			if(lc<=j && rc<=j)
+			if(lc <= j && rc <= j)
 			{
 				if(a[i]>a[lc] && a[i]>a[rc])
 				{
@@ -54,9 +56,8 @@ void heapSort(int a[], int n)
 					a[lc]=a[i];
 					a[i]=t;
 					i=lc;
-				
 				}
-				else if(a[rc]>a[lc])
+				else
 				{
 					t=a[rc];
 					a[rc]=a[i];
@@ -64,34 +65,32 @@ void heapSort(int a[], int n)
 					i=rc;
 				}
 			}
-			else if(lc<=j && a[lc]>a[i])
+			else if(lc <= j && a[lc]>a[i])
 			{
 				t=a[i];
 				a[i]=a[lc];
 				a[lc]=t;
-				i=lc;
+				i=lc;	
 			}
 			else
 			{
 				break;
 			}
-			
-			
-            printf("\n");
+			disp(a, 4);
 		}
 	}
 }
 int main()
 {
-    int a[5];
-    heaptree(a, 0, 4);
-    heaptree(a, 1, 8);
-    heaptree(a, 2, 15);
-    heaptree(a, 3, 5);
-    heaptree(a, 4, 1);
-    disparr(a, 4);
-    printf("\n");
-    heapSort(a, 4);
-    disparr(a, 4);
-    return 0;
+	int a[5];
+	heaptree(a, 0, 4);
+	heaptree(a, 1, 8);
+	heaptree(a, 2, 15);
+	heaptree(a, 3, 5);
+	heaptree(a, 4, 1);
+	disp(a, 4);
+	printf("\n");
+	heapsort(a, 4);
+	disp(a, 4);
+	return 0;
 }

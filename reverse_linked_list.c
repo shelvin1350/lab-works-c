@@ -27,55 +27,44 @@ void insert(int e)
 		t->next->next=NULL;
 	}
 }
-void display()
+void rev(list *t)
 {
 	if(head==NULL)
 	{
-		printf("List Empty");
+		return;
 	}
 	else
 	{
-		list *t;
-		t=head;
-		while(t!=NULL)
+		if(t!=NULL)
 		{
+			rev(t->next);
 			printf("%d\t", t->data);
-			t=t->next;
 		}
 	}
 }
-void delete(int e)
-{
-	list *t;
-	t=head;
-	if(head==NULL)
-	{
-		printf("The list is empty");
-	}
-	else if(t->next==NULL)
-	{
-		if(t->data!
-		head=NULL;
-	}
-	else
-	{
-		while(t->next!=NULL && t->next->data==e)
-		{
-			t=t->next;
-		}
-		t=t->next;
-	}
+
+void reverse() {
+    struct node *prev = NULL;
+    struct node *current = head;
+    struct node *nextNode = NULL;
+
+    while (current != NULL) {
+        nextNode = current->next;
+        current->next = prev;
+        prev = current;
+        current = nextNode;
+    }
+
+    head = prev;
 }
 void main()
 {
 	insert(10);
-	display();
+	
 	insert(20);
-	display();
+	
 	insert(30);
-	display();
-	delete(10);
-	display();
-	delete (20);
-	display();
+	rev(head);
+	reverse();
+	
 }

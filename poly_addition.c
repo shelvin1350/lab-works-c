@@ -1,6 +1,6 @@
 #include <stdio.h>
 int i, j, n3;
-int coefsum[10], expsum[10], coefmul[10], expmul[10];
+int coefsum[10], expsum[10], coefmul[10], expmul[10], coefsub[10], expsub[10];
 void display(int n, int coef[], int expo[])
 {
 
@@ -22,7 +22,7 @@ void display(int n, int coef[], int expo[])
 		}
 		
 	}
-	printf("\n");
+	printf("\n\n");
 }
 void add(int coef1[], int exp1[], int coef2[], int exp2[], int n1, int n2)
 {
@@ -64,7 +64,51 @@ void add(int coef1[], int exp1[], int coef2[], int exp2[], int n1, int n2)
 		j++; k++;
 	}
 	n3=k;
+	printf("Sum: \n");
 	display(n3, coefsum, expsum);
+}
+void sub(int coef1[], int exp1[], int coef2[], int exp2[], int n1, int n2)
+{
+	
+	int k=0;
+	i=0; 
+	j=0;
+	while(i<n1 && j<n2)
+	{	
+		if(exp1[i]==exp2[j])
+		{
+			expsub[k]=exp1[i];
+			coefsub[k]=coef1[i]-coef2[j];
+			i++;j++;k++;
+		}
+		else if(exp1[i]<exp2[j])
+		{
+			expsub[k]=exp2[j];
+			coefsub[k]=coef2[j];
+			j++;k++;
+		}
+		else
+		{
+			expsub[k]=exp1[i];
+			coefsub[k]=coef1[i];
+			i++; k++;
+		}
+	}
+	if(i<n1)
+	{
+		expsub[k]=exp1[i];
+		coefsub[k]=coef1[i];
+		i++; k++;
+	}
+	else if(j<n2)
+	{
+		expsub[k]=exp2[j];
+		coefsub[k]=coef2[j];
+		j++; k++;
+	}
+	n3=k;
+	printf("Difference: \n");
+	display(n3, coefsub, expsub);
 }
 void read(int coef1[],int  expo1[], int coef2[], int expo2[], int n1, int n2)
 {
@@ -114,6 +158,7 @@ int main()
 	scanf("%d", &n2);
 	read(coef1, expo1, coef2, expo2, n1, n2);
 	add(coef1, expo1, coef2, expo2, n1, n2);
+	(coef1, expo1, coef2, expo2, n1, n2);
 	mul(coef1, expo1, coef2, expo2, n1, n2);
 	return 0;
 }
